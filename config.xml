@@ -6,13 +6,13 @@
     <specification>Minimal SLES 12</specification>
   </description>
   <preferences>
-    <type checkprebuilt='true' boot='oemboot/suse-SLES11' fsnocheck='true' filesystem='ext3' installiso='true' installboot='install' image='oem'>
+    <type checkprebuilt='true' boot='oemboot/suse-SLE12-JeOS' fsnocheck='true' filesystem='ext4' installiso='true' installboot='install' image='oem'>
       <oemconfig>
         <oem-swap>true</oem-swap>
-        <oem-swapsize>512</oem-swapsize>
+        <oem-swapsize>1024</oem-swapsize>
       </oemconfig>
     </type>
-    <version>5.0.0</version>
+    <version>2.0.0</version>
     <packagemanager>zypper</packagemanager>
     <rpm-check-signatures>false</rpm-check-signatures>
     <rpm-force>false</rpm-force>
@@ -24,8 +24,8 @@
   <packages type='image' patternType='onlyRequired'>
     <opensusePattern name='Minimal'/>
     <opensusePattern name='x11'/>
-    <opensusePattern name='SMT'/>
     <opensusePattern name='base'/>
+    <opensusePattern name='ceph_server'/>
     <package name='rsync'/>
     <package name='install-initrd'/>
     <package name='kernel-firmware'/>
