@@ -24,153 +24,59 @@ test -f /.profile && . /.profile
 #======================================
 # Greeting...
 #--------------------------------------
-echo "Configure image: [$name]..."
+echo "Configure image: [$kiwi_iname]..."
 
 #======================================
-# SuSEconfig
+# Mount system filesystems
 #--------------------------------------
-echo "** Running suseConfig..."
-suseConfig
-
-echo "** Running ldconfig..."
-/sbin/ldconfig
+baseMount
 
 #======================================
 # Setup baseproduct link
 #--------------------------------------
 suseSetupProduct
 
-
-#======================================
-# Setup default runlevel
-#--------------------------------------
-baseSetRunlevel 3
-
 #======================================
 # Add missing gpg keys to rpm
 #--------------------------------------
 suseImportBuildKey
 
+#======================================
+# Activate services
+#--------------------------------------
+suseInsertService sshd
 
 #======================================
-# Sysconfig Update
+# Setup default target, multi-user
 #--------------------------------------
-echo '** Update sysconfig entries...'
-baseUpdateSysConfig /etc/sysconfig/keyboard KEYTABLE english-us
-baseUpdateSysConfig /etc/sysconfig/network/config FIREWALL no
-baseUpdateSysConfig /etc/sysconfig/network/config NETWORKMANAGER no
-baseUpdateSysConfig /etc/sysconfig/SuSEfirewall2 FW_SERVICES_EXT_TCP 22\ 80\ 443
-baseUpdateSysConfig /etc/sysconfig/console CONSOLE_FONT lat9w-16.psfu
-baseUpdateSysConfig /etc/sysconfig/displaymanager DISPLAYMANAGER xdm
-baseUpdateSysConfig /etc/sysconfig/windowmanager DEFAULT_WM icewm-session
+baseSetRunlevel 3
 
+#==========================================
+# remove package docs
+#------------------------------------------
+rm -rf /usr/share/doc/packages/*
+rm -rf /usr/share/doc/manual/*
+rm -rf /opt/kde*
 
 #======================================
-# Setting up overlay files 
+# only basic version of vim is
+# installed; no syntax highlighting
 #--------------------------------------
-echo '** Setting up overlay files...'
-mkdir -p /etc/YaST2/
-mv /studio/overlay-tmp/files//etc/YaST2//firstboot-suse-cloud.xml /etc/YaST2//firstboot-suse-cloud.xml
-chown root:root /etc/YaST2//firstboot-suse-cloud.xml
-chmod 644 /etc/YaST2//firstboot-suse-cloud.xml
-mkdir -p /etc/
-mv /studio/overlay-tmp/files//etc//modprobe.conf.local /etc//modprobe.conf.local
-chown root:root /etc//modprobe.conf.local
-chmod 644 /etc//modprobe.conf.local
-mkdir -p /etc/
-mv /studio/overlay-tmp/files//etc//motd /etc//motd
-chown root:root /etc//motd
-chmod 644 /etc//motd
-mkdir -p /etc/
-mv /studio/overlay-tmp/files//etc//hosts /etc//hosts
-chown root:root /etc//hosts
-chmod 644 /etc//hosts
-mkdir -p /etc/
-mv /studio/overlay-tmp/files//etc//HOSTNAME /etc//HOSTNAME
-chown root:root /etc//HOSTNAME
-chmod 644 /etc//HOSTNAME
-mkdir -p /etc/sysconfig/network/
-mv /studio/overlay-tmp/files//etc//sysconfig/network/config /etc//sysconfig/network/config
-chown root:root /etc//sysconfig/network/config
-chmod 644 /etc//sysconfig/network/config
-mkdir -p /etc/sysconfig/network/
-mv /studio/overlay-tmp/files//etc//sysconfig/network/dhcp /etc//sysconfig/network/dhcp
-chown root:root /etc//sysconfig/network/dhcp
-chmod 644 /etc//sysconfig/network/dhcp
-mkdir -p /etc/sysconfig/network/
-mv /studio/overlay-tmp/files//etc//sysconfig/network/routes /etc//sysconfig/network/routes
-chown root:root /etc//sysconfig/network/routes
-chmod 644 /etc//sysconfig/network/routes
-mkdir -p /etc/sysconfig/network/
-mv /studio/overlay-tmp/files//etc//sysconfig/network/ifcfg-eth0 /etc//sysconfig/network/ifcfg-eth0
-chown root:root /etc//sysconfig/network/ifcfg-eth0
-chmod 644 /etc//sysconfig/network/ifcfg-eth0
-mkdir -p /srv/tftpboot/iso/
-mv /studio/overlay-tmp/files//srv/tftpboot/iso//SLES-11-SP3-DVD-x86_64-GM-DVD1.iso /srv/tftpboot/iso//SLES-11-SP3-DVD-x86_64-GM-DVD1.iso
-chown root:root /srv/tftpboot/iso//SLES-11-SP3-DVD-x86_64-GM-DVD1.iso
-chmod 644 /srv/tftpboot/iso//SLES-11-SP3-DVD-x86_64-GM-DVD1.iso
-mkdir -p /srv/tftpboot/iso/
-mv /studio/overlay-tmp/files//srv/tftpboot/iso//SLE-12-Server-DVD-x86_64-GM-DVD1.iso /srv/tftpboot/iso//SLE-12-Server-DVD-x86_64-GM-DVD1.iso
-chown root:root /srv/tftpboot/iso//SLE-12-Server-DVD-x86_64-GM-DVD1.iso
-chmod 644 /srv/tftpboot/iso//SLE-12-Server-DVD-x86_64-GM-DVD1.iso
-mkdir -p /srv/tftpboot/iso/
-mv /studio/overlay-tmp/files//srv/tftpboot/iso//SUSE-SLE12-CLOUD-5-COMPUTES-x86_64-GM-DVD1.iso /srv/tftpboot/iso//SUSE-SLE12-CLOUD-5-COMPUTE-x86_64-GM-DVD1.iso
-chown root:root /srv/tftpboot/iso//SUSE-SLE12-CLOUD-5-COMPUTE-x86_64-GM-DVD1.iso
-chmod 644 /srv/tftpboot/iso//SUSE-SLE12-CLOUD-5-COMPUTE-x86_64-GM-DVD1.iso
-mkdir -p /
-mv /studio/overlay-tmp/files//SLE-12-Server-Pool.tar.bz2 /SLE-12-Server-Pool.tar.bz2
-chown root:root /SLE-12-Server-Pool.tar.bz2
-chmod 644 /SLE-12-Server-Pool.tar.bz2
-mkdir -p /
-mv /studio/overlay-tmp/files//SLE-12-Server-Updates.tar.bz2 /SLE-12-Server-Updates.tar.bz2
-chown root:root /SLE-12-Server-Updates.tar.bz2
-chmod 644 /SLE-12-Server-Updates.tar.bz2
-mkdir -p /
-mv /studio/overlay-tmp/files//SLES11-SP3-Pool.tar.bz2 /SLES11-SP3-Pool.tar.bz2
-chown root:root /SLES11-SP3-Pool.tar.bz2
-chmod 644 /SLES11-SP3-Pool.tar.bz2
-mkdir -p /
-mv /studio/overlay-tmp/files//SLES11-SP3-Updates.tar.bz2 /SLES11-SP3-Updates.tar.bz2
-chown root:root /SLES11-SP3-Updates.tar.bz2
-chmod 644 /SLES11-SP3-Updates.tar.bz2
-mkdir -p /
-mv /studio/overlay-tmp/files//SLE11-HAE-SP3-Pool.tar.bz2 /SLE11-HAE-SP3-Pool.tar.bz2
-chown root:root /SLE11-HAE-SP3-Pool.tar.bz2
-chmod 644 /SLE11-HAE-SP3-Pool.tar.bz2
-mkdir -p /
-mv /studio/overlay-tmp/files//SLE11-HAE-SP3-Updates.tar.bz2 /SLE11-HAE-SP3-Updates.tar.bz2
-chown root:root /SLE11-HAE-SP3-Updates.tar.bz2
-chmod 644 /SLE11-HAE-SP3-Updates.tar.bz2
-mkdir -p /
-mv /studio/overlay-tmp/files//SUSE-Cloud-5-Pool.tar.bz2 /SUSE-Cloud-5-Pool.tar.bz2
-chown root:root /SUSE-Cloud-5-Pool.tar.bz2
-chmod 644 /SUSE-Cloud-5-Pool.tar.bz2
-mkdir -p /
-mv /studio/overlay-tmp/files//SUSE-Cloud-5-Updates.tar.bz2 /SUSE-Cloud-5-Updates.tar.bz2
-chown root:root /SUSE-Cloud-5-Updates.tar.bz2
-chmod 644 /SUSE-Cloud-5-Updates.tar.bz2
-mkdir -p /etc/init.d/
-mv /studio/overlay-tmp/files//etc/init.d//suse_studio_firstboot /etc/init.d//suse_studio_firstboot
-chown root:root /etc/init.d//suse_studio_firstboot
-chmod 755 /etc/init.d//suse_studio_firstboot
-chown root:root /studio/build-custom
-chmod 755 /studio/build-custom
-# run custom build_script after build
-/studio/build-custom
-chown root:root /studio/suse-studio-custom
-chmod 755 /studio/suse-studio-custom
-test -d /studio || mkdir /studio
-cp /image/.profile /studio/profile
-cp /image/config.xml /studio/config.xml
-rm -rf /studio/overlay-tmp
-true
+sed -i -e's/^syntax on/" syntax on/' /etc/vimrc
 
 #======================================
-# SSL Certificates Configuration
+# SuSEconfig
 #--------------------------------------
-echo '** Rehashing SSL Certificates...'
-c_rehash
+suseConfig
 
+#======================================
+# Remove yast if not in use
+#--------------------------------------
+suseRemoveYaST
 
-sh /studio/configure_xdm_theme.sh
+#======================================
+# Umount kernel filesystems
+#--------------------------------------
+baseCleanMount
 
+exit 0
