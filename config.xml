@@ -99,6 +99,12 @@
     <repository type="rpm-md">
         <source path="http://download.suse.de/ibs/SUSE:/SLE-12:/GA/standard/"/>
     </repository>
+    <repository type="rpm-md">
+        <source path="http://download.suse.de/ibs/SUSE:/SLE-12:/Update/standard/"/>
+    </repository>
+    <repository type="rpm-md">
+        <source path="http://download.suse.de/ibs/Devel:/Storage:/2.0/SLE12/"/>
+    </repository>
     <packages type="image">
 <!--
         new pattern system works only with zypper from 13.2
@@ -108,6 +114,7 @@
         using pattern package directly instead to stay compatible
 -->
         <package name="patterns-sles-Minimal"/>
+        <package name="patterns-ses-ceph_server"/>
         <package name="plymouth-branding-SLE" bootinclude="true"/>
         <package name="grub2-branding-SLE" bootinclude="true"/>
         <package name="iputils"/>
