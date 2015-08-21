@@ -12,12 +12,12 @@ baseSetupBuildDay
 #==========================================
 # remove unneded kernel files
 #------------------------------------------
-suseStripKernel
+#suseStripKernel
 
 #==========================================
 # remove unneeded files
 #------------------------------------------
-suseStripInitrd
+#suseStripInitrd
 
 #==========================================
 # umount
