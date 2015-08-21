@@ -27,52 +27,21 @@ test -f /.profile && . /.profile
 echo "Configure image: [$kiwi_iname]..."
 
 #======================================
-# Mount system filesystems
-#--------------------------------------
-baseMount
-
-#======================================
-# Setup baseproduct link
-#--------------------------------------
-suseSetupProduct
-
-#======================================
-# Add missing gpg keys to rpm
-#--------------------------------------
-suseImportBuildKey
-
-#======================================
-# Activate services
-#--------------------------------------
-suseInsertService sshd
-
-#======================================
-# Setup default target, multi-user
-#--------------------------------------
-baseSetRunlevel 3
-
-#==========================================
-# remove package docs
-#------------------------------------------
-rm -rf /usr/share/doc/packages/*
-rm -rf /usr/share/doc/manual/*
-rm -rf /opt/kde*
-
-#======================================
-# only basic version of vim is
-# installed; no syntax highlighting
-#--------------------------------------
-sed -i -e's/^syntax on/" syntax on/' /etc/vimrc
-
-#======================================
 # SuSEconfig
 #--------------------------------------
 suseConfig
 
+#==========================================
+# setup gfxboot
+#------------------------------------------
+suseGFXBoot openSUSE grub
+
 #======================================
-# Remove yast if not in use
+# Keep UTF-8 locale
 #--------------------------------------
-suseRemoveYaST
+baseStripLocales \
+    $(for i in $(echo $kiwi_language | tr "," " ");do echo -n "$i.utf8 ";done)
+baseStripTranslations kiwi.mo
 
 #======================================
 # Umount kernel filesystems
