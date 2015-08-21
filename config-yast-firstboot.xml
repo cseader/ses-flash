@@ -132,7 +132,7 @@
                 </module>
                 <module>
                     <label>Host Name</label>
-                    <enabled config:type="boolean">false</enabled>
+                    <enabled config:type="boolean">true</enabled>
                     <name>firstboot_hostname</name>
                 </module>
                 <module>
@@ -195,7 +195,7 @@
                 <module>
                     <label>Customer Center</label>
                     <name>inst_suse_register</name>
-                    <enabled config:type="boolean">false</enabled>
+                    <enabled config:type="boolean">true</enabled>
                 </module>
                 <module>
                     <label>Hardware</label>
@@ -223,5 +223,16 @@
 	-->
 	<ac_label_1><label>Configuring network...</label></ac_label_1>
 	<ac_label_2><label>Configuring hardware...</label></ac_label_2>
+        <congratulate>
+          <label>
+           &lt;p&gt;The deployment of SUSE Enterprise Storage 2 image has completed successfully.&lt;/p&gt;
+           &lt;p&gt;To finish setting up SUSE Enterprise Storage 2 you will need to use ceph-deploy.
+           Please reference the deployment guide from this point.&lt;/p&gt;
+           &lt;p&gt;execute ceph deploy&lt;/p&gt;
+           &lt;p&gt; &lt;/p&gt;
+           &lt;p&gt;Click Finish.&lt;/p&gt;
+           &lt;p&gt;Please visit us at http://www.suse.com/&lt;/p&gt;
+          </label>
+        </congratulate>
     </texts>
 </productDefines>
