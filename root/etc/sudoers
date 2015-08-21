@@ -51,3 +51,6 @@ kiwi	ALL=(ALL) NOPASSWD: ALL
 # Samples
 # %users  ALL=/sbin/mount /cdrom,/sbin/umount /cdrom
 # %users  localhost=/sbin/shutdown -h now
+
+#for ceph user
+ceph ALL = (root) NOPASSWD:ALL
