@@ -1,21 +1,26 @@
-#SUSE Enterprise Storage Rapid Deployment Appliance
+###SUSE Enterprise Storage Rapid Deployment Appliance
 
-###Kiwi Build Setup 
+#####Kiwi Build Setup 
 - Install latest kiwi from the Open Build Service
 
 http://download.opensuse.org/repositories/Virtualization:/Appliances/
 
 SLE 12
+
 http://download.opensuse.org/repositories/Virtualization:/Appliances/SLE_12/
 
 openSUSE 13.2
+
 http://download.opensuse.org/repositories/Virtualization:/Appliances/openSUSE_13.2/
 
 openSUSE Leap 42.1
+
 http://download.opensuse.org/repositories/Virtualization:/Appliances/openSUSE_Leap_42.1/
 
 Tumbleweed 
+
 Comes with the lastest version
+
 
 | Intsall the kiwi packages |
 |---------------------------|
