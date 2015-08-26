@@ -97,7 +97,7 @@
                 <module>
                     <label>Restart Network</label>
                     <name>firstboot_network_write</name>
-                    <enabled config:type="boolean">true</enabled>
+                    <enabled config:type="boolean">false</enabled>
                 </module>
 		<module>
                     <enabled config:type="boolean">true</enabled>
