@@ -48,4 +48,9 @@ baseStripTranslations kiwi.mo
 #--------------------------------------
 baseCleanMount
 
+#=====================================
+# Ceph Admin Setup
+#-------------------------------------
+#su - ceph -c "echo | ssh-keygen"
+
 exit 0
