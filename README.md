@@ -1,2 +1,4 @@
-# ses-rapid
-SUSE Enterprise Storage Rapid deployment appliance
+# ses2-flash
+SUSE Enterprise Storage Rapid Deployment Appliance
+
+##Kiwi Build Setup 
