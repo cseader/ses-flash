@@ -77,12 +77,12 @@
                 <module>
                     <label>Root Password</label>
                     <enabled config:type="boolean">true</enabled>
-                    <name>inst_root</name>
+                    <name>inst_root_first</name>
                 </module>
                 <module>
                     <label>Users</label>
                     <enabled config:type="boolean">true</enabled>
-                    <name>inst_user</name>
+                    <name>inst_user_first</name>
                 </module>
                 <module>
                     <label>Host Name</label>
@@ -94,6 +94,11 @@
                     <enabled config:type="boolean">true</enabled>
                     <name>inst_lan</name>
                 </module>
+                <module>
+                    <label>Restart Network</label>
+                    <name>firstboot_network_write</name>
+                    <enabled config:type="boolean">true</enabled>
+                </module>
 		<module>
                     <enabled config:type="boolean">true</enabled>
                     <name>firstboot_ssh</name>
@@ -101,17 +106,12 @@
                 <module>
                     <label>Time and Date</label>
                     <enabled config:type="boolean">true</enabled>
-                    <name>firstboot_timezone</name>
+                    <name>inst_timezone</name>
                 </module>
                 <module>
                     <label>NTP Client</label>
                     <enabled config:type="boolean">true</enabled>
                     <name>firstboot_ntp</name>
-                </module>
-                <module>
-                    <label>Restart Network</label>
-                    <name>firstboot_network_write</name>
-                    <enabled config:type="boolean">true</enabled>
                 </module>
                 <module>
                     <label>Finish Setup</label>
