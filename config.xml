@@ -1,209 +1,408 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.2" name="SES2-Flash">
+<image schemaversion="5.8" name="SES2-Flash" displayname="SES2-Flash">
     <description type="system">
-        <author>Cameron Seader</author>
-        <contact>cs@suse.com</contact>
-        <specification>boot/initrd image used on OEM VMX disk</specification>
+	<author>Cameron Seader</author>
+	<contact>cs@suse.com</contact>
+	<specification>SUSE Linux Enterprise Server 12</specification>
     </description>
     <preferences>
-        <type image="oem" filesystem="ext4" boot="oemboot/suse-SLES12" installiso="true" bootloader="grub2" firmware="efi" hybrid="true" kernelcmdline="splash" bootprofile="default"/>
-        <version>0.0.2</version>
-        <packagemanager>zypper</packagemanager>
-        <bootsplash-theme>SLE</bootsplash-theme>
+	<type image='oem' installiso="true" hybrid="true" boot='oemboot/suse-SLES12' filesystem='ext4' installboot='install' bootloader='grub2' fsnocheck='true'>
+	    <oemconfig>
+              <oem-swap>true</oem-swap>
+              <oem-swapsize>2048</oem-swapsize>
+              <oem-systemsize>30000</oem-systemsize>
+              <oem-unattended>false</oem-unattended>
+              <oem-skip-verify>true</oem-skip-verify>
+              <oem-recovery>false</oem-recovery>
+              <oem-reboot>false</oem-reboot>
+            </oemconfig>
+	</type>
+	<version>0.0.2</version>
+	<packagemanager>zypper</packagemanager>
+	<bootsplash-theme>SLE</bootsplash-theme>
         <bootloader-theme>SLE</bootloader-theme>
-        <locale>en_US</locale>
-        <keytable>us.map.gz</keytable>
-        <timezone>Europe/Berlin</timezone>
-        <hwclock>utc</hwclock>
-        <rpm-excludedocs>true</rpm-excludedocs>
         <rpm-check-signatures>false</rpm-check-signatures>
-    </preferences>
-    <profiles>
-        <profile name="default" description="Booting default setup"/>
-    </profiles>
-    <drivers>
-        <file name="crypto/*"/>
-        <file name="drivers/acpi/*"/>
-        <file name="drivers/acpi/dock.ko"/>
-        <file name="drivers/ata/*"/>
-        <file name="drivers/block/brd.ko"/>
-        <file name="drivers/block/cciss.ko"/>
-        <file name="drivers/block/loop.ko"/>
-        <file name="drivers/block/virtio_blk.ko"/>
-        <file name="drivers/cdrom/*"/>
-        <file name="drivers/char/hw_random/virtio-rng.ko"/>
-        <file name="drivers/char/lp.ko"/>
-        <file name="drivers/firmware/edd.ko"/>
-        <file name="drivers/gpu/drm/*"/>
-        <file name="drivers/hid/*"/>
-        <file name="drivers/hv/*"/>
-        <file name="drivers/hwmon/*"/>
-        <file name="drivers/ide/*"/>
-        <file name="drivers/input/keyboard/*"/>
-        <file name="drivers/input/mouse/*"/>
-        <file name="drivers/md/*"/>
-        <file name="drivers/message/fusion/*"/>
-        <file name="drivers/net/*"/>
-        <file name="drivers/parport/*"/>
-        <file name="drivers/scsi/*"/>
-        <file name="drivers/staging/hv/*"/>
-        <file name="drivers/thermal/*"/>
-        <file name="drivers/usb/*"/>
-        <file name="drivers/virtio/*"/>
-        <file name="fs/binfmt_aout.ko"/>
-        <file name="fs/binfmt_misc.ko"/>
-        <file name="fs/overlayfs/*"/>
-        <file name="fs/btrfs/*"/>
-        <file name="fs/exportfs/*"/>
-        <file name="fs/ext2/*"/>
-        <file name="fs/ext3/*"/>
-        <file name="fs/ext4/*"/>
-        <file name="fs/fat/*"/>
-        <file name="fs/fuse/*"/>
-        <file name="fs/hfs/*"/>
-        <file name="fs/jbd/*"/>
-        <file name="fs/jbd2/*"/>
-        <file name="fs/mbcache.ko"/>
-        <file name="fs/nls/nls_cp437.ko"/>
-        <file name="fs/nls/nls_iso8859-1.ko"/>
-        <file name="fs/nls/nls_utf8.ko"/>
-        <file name="fs/quota_v1.ko"/>
-        <file name="fs/quota_v2.ko"/>
-        <file name="fs/squashfs/*"/>
-        <file name="fs/udf/*"/>
-        <file name="fs/vfat/*"/>
-        <file name="fs/xfs/*"/>
-        <file name="fs/isofs/*"/>
-        <file name="lib/crc-t10dif.ko"/>
-        <file name="lib/crc16.ko"/>
-        <file name="lib/libcrc32c.ko"/>
-        <file name="lib/zlib_deflate/zlib_deflate.ko"/>
-        <file name="net/packet/*"/>
-    </drivers>
-    <users group="users">
-        <user name="ceph" password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/home/ceph"/>
-    </users>
-    <users group="root">
-        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
-    </users>
-    <users group="kiwi">
-        <user name="kiwi" password="2exADvrjjX/kk" home="/home/kiwi"/>
-    </users>
-    <repository type="rpm-md">
-        <source path="http://download.suse.de/ibs/SUSE:/SLE-12:/GA/standard/"/>
-    </repository>
-    <repository type="rpm-md">
-        <source path="http://download.suse.de/ibs/SUSE:/SLE-12:/Update/standard/"/>
-    </repository>
-    <repository type="rpm-md">
-        <source path="http://download.suse.de/ibs/Devel:/Storage:/2.0/SLE12/"/>
-    </repository>
-    <packages type="bootstrap">
-        <package name="kbd"/>
-        <package name="gptfdisk"/>
-        <package name="adaptec-firmware"/>
-        <package name="atftp"/>
-        <package name="bc"/>
-        <package name="bind-libs"/>
-        <package name="bind-utils"/>
-        <package name="btrfsprogs"/>
-        <package name="busybox"/>
-        <package name="bzip2"/>
-        <package name="cryptsetup"/>
-        <package name="curl"/>
-        <package name="dialog"/>
-        <package name="dmraid"/>
-        <package name="dosfstools"/>
-        <package name="e2fsprogs"/>
-        <package name="fbiterm"/>
-        <package name="file"/>
-        <package name="fribidi"/>
-        <package name="genisoimage"/>
-        <package name="gettext-runtime"/>
-        <package name="grub2"/>
-        <package name="grub2-x86_64-efi" arch="x86_64"/>
-        <package name="grub2-i386-efi" arch="i686"/>
-        <package name="grub2-i386-efi" arch="i586"/>
-        <package name="grub2-i386-pc"/>
-        <package name="shim" arch="x86_64"/>
-        <package name="hwinfo"/>
-        <package name="iputils"/>
-        <package name="kernel-firmware"/>
-        <package name="kexec-tools"/>
-        <package name="kiwi-tools"/>
-        <package name="kpartx"/>
-        <package name="lvm2"/>
-        <package name="make"/>
-        <package name="mdadm"/>
-        <package name="module-init-tools"/>
-        <package name="net-tools"/>
-        <package name="netcfg"/>
-        <package name="parted"/>
-        <package name="pciutils"/>
-        <package name="plymouth"/>
-        <package name="plymouth-scripts"/>
-        <package name="squashfs"/>
-        <package name="sysconfig"/>
-        <package name="sysfsutils"/>
-        <package name="syslinux"/>
-        <package name="tar"/>
-        <package name="util-linux"/>
-        <package name="xfsprogs"/>
-        <package name="diffutils"/>
-        <package name="filesystem"/>
-        <package name="glibc"/>
-        <package name="glibc-locale"/>
-        <package name="procps"/>
-        <package name="rsync"/>
-        <package name="timezone"/>
-        <package name="which"/>
-        <package name="udev"/>
-        <package name="wicked"/>
-        <package name="iproute2"/>
-        <package name="psmisc"/>
-        <package name="sysvinit-tools"/>
-        <package name="multipath-tools"/>
-        <package name="xz"/>
-        <package name="sles-release"/>
-    </packages>
-    <packages type="iso">
-        <package name="gfxboot-branding-SLE" bootinclude="true" bootdelete="true"/>
-    </packages>
-    <packages type="image">
-        <package name="patterns-sles-Minimal"/>
-        <package name="patterns-sles-base"/>
-        <package name="patterns-sles-x11"/>
-        <package name="patterns-ses-ceph_server"/>
-        <package name="plymouth-branding-SLE" bootinclude="true"/>
-        <package name="grub2-branding-SLE" bootinclude="true"/>
-        <package name="yast2-firstboot"/>
-        <package name="yast2-users"/>
-        <package name="kernel-default"/>
-        <package name="ntp"/>
-        <package name="yast2-ntp-client"/>
-        <package name="iputils"/>
-        <package name="vim"/>
-        <package name="grub2"/>
-        <package name="syslinux"/>
-        <package name="lvm2"/>
-        <package name="plymouth"/>
-        <package name="fontconfig"/>
-        <package name="fonts-config"/>
-        <package name="tar"/>
-        <package name="parted"/>
-        <package name="systemd"/>
-        <package name="dracut"/>
-        <package name="wicked"/>
-        <package name="iproute2"/>
-        <package name="kiwi"/>
-        <package name="kiwi-templates"/>
-        <package name="kiwi-desc-oemboot"/>
-        <package name="openssh"/>
-        <package name="rsync"/>
-        <package name="psmisc"/>
-        <package name="sudo"/>
-        <package name="dhcp-client"/>
-        <package name="which"/>
-    </packages>
+	<locale>en_US</locale>
+	<keytable>us.map.gz</keytable>
+        <hwclock>utc</hwclock>
+        <timezone>utc</timezone>
+	</preferences>
+        <users group="users">
+            <user name="ceph" password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/home/ceph"/>
+        </users>
+        <users group="root">
+            <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
+        </users>
+    <!-- Release repos always in order newest first, oldest last -->
+        <repository type="rpm-md">
+            <source path="http://download.suse.de/ibs/Devel:/Storage:/2.0/SLE12/"/>
+        </repository>
+        <repository type="rpm-md">
+            <source path="http://download.suse.de/ibs/SUSE:/SLE-12:/Update/standard/"/>
+        </repository>
+        <repository type="rpm-md">
+            <source path="http://download.suse.de/ibs/SUSE:/SLE-12:/GA/standard/"/>
+        </repository>
+	<packages type="image">
+		<package name="aaa_base"/>
+		<package name="acl"/>
+                <package name="patterns-sles-Minimal"/>
+                <package name="patterns-sles-base"/>
+                <package name="patterns-sles-x11"/>
+		<!-- SES2 Pattern  -->
+                <package name="patterns-ses-ceph_server"/>
+                <package name="plymouth-branding-SLE" bootinclude="true"/>
+                <package name="grub2-branding-SLE" bootinclude="true"/>
+                <package name="gfxboot-branding-SLE" bootinclude="true"/>
+                <package name="yast2-firstboot"/>
+		<package name="at"/>
+		<package name="atk"/>
+		<package name="atk-lang"/>
+		<package name="attr"/>
+		<package name="audit"/>
+		<package name="autofs"/>
+		<package name="autoyast2"/>
+		<package name="bash"/>
+		<package name="bc"/>
+		<package name="bind-libs"/>
+		<package name="bind-utils"/>
+		<package name="binutils"/>
+		<package name="blktrace"/>
+		<package name="bzip2"/>
+		<package name="ca-certificates"/>
+		<package name="cifs-utils"/>
+		<package name="cloud-init"/>
+		<package name="command-not-found"/>
+		<package name="coreutils"/>
+		<package name="cpio"/>
+		<package name="cpp"/>
+		<package name="cracklib"/>
+		<package name="cracklib-dict-full"/>
+		<package name="crash"/>
+		<package name="cron"/>
+		<package name="cryptconfig"/>
+		<package name="cryptsetup"/>
+		<package name="curl"/>
+		<package name="cyrus-sasl"/>
+		<package name="cyrus-sasl-digestmd5"/>
+		<package name="cyrus-sasl-gssapi"/>
+		<package name="cyrus-sasl-plain"/>
+		<package name="cyrus-sasl-saslauthd"/>
+		<package name="dbus-1"/>
+		<package name="dbus-1-glib"/>
+		<package name="dbus-1-python"/>
+		<package name="deltarpm"/>
+		<package name="device-mapper"/>
+		<package name="diffutils"/>
+		<package name="dirmngr"/>
+		<package name="dmapi"/>
+		<package name="dos2unix"/>
+		<package name="dosfstools"/>
+		<package name="dracut"/>
+		<package name="e2fsprogs"/>
+		<package name="elfutils"/>
+		<package name="ethtool"/>
+		<package name="expat"/>
+		<package name="expect"/>
+		<package name="facter"/>
+		<package name="fastjar"/>
+		<package name="file"/>
+		<package name="filesystem"/>
+		<package name="fillup"/>
+		<package name="findutils"/>
+		<package name="fipscheck"/>
+		<package name="fontconfig"/>
+		<package name="fping"/>
+		<package name="freetype2"/>
+		<package name="gawk"/>
+		<package name="gettext-runtime"/>
+		<package name="glib2"/>
+		<package name="glibc"/>
+		<package name="glibc-i18ndata"/>
+		<package name="glibc-locale"/>
+		<package name="gpg2"/>
+		<package name="gpg2-lang"/>
+		<package name="grep"/>
+		<package name="groff"/>
+		<package name="growpart"/>
+		<package name="grub2"/>
+		<package name="gvfs"/>
+		<package name="gvfs-backends"/>
+		<package name="gvfs-lang"/>
+		<package name="gzip"/>
+		<package name="haveged"/>
+		<package name="hwinfo"/>
+		<package name="icmpinfo"/>
+		<package name="info"/>
+		<package name="inst-source-utils"/>
+		<package name="iproute2"/>
+		<package name="iptables"/>
+		<package name="iputils"/>
+		<package name="irqbalance"/>
+		<package name="kbd"/>
+		<package name="kdump"/>
+		<package name="kernel-default"/>
+		<package name="kexec-tools"/>
+		<package name="keyutils"/>
+		<package name="klogd"/>
+		<package name="kpartx"/>
+		<package name="krb5"/>
+		<package name="ksh"/>
+		<package name="less"/>
+		<package name="libaio"/>
+		<package name="libatk-1_0-0"/>
+		<package name="libaugeas0"/>
+		<package name="libbz2-1"/>
+		<package name="libcap"/>
+		<package name="libcom_err2"/>
+		<package name="libcurl4"/>
+		<package name="libebl1"/>
+		<package name="libelf0"/>
+		<package name="libesmtp"/>
+		<package name="libevent"/>
+		<package name="libexif"/>
+		<package name="libext2fs2"/>
+		<package name="libfuse2"/>
+		<package name="libgio-2_0-0"/>
+		<package name="libglib-2_0-0"/>
+		<package name="libgmodule-2_0-0"/>
+		<package name="libgobject-2_0-0"/>
+		<package name="libgpg-error0"/>
+		<package name="libgpgme11"/>
+		<package name="libgssglue1"/>
+		<package name="libgthread-2_0-0"/>
+		<package name="libidl"/>
+		<package name="libidn"/>
+		<package name="libjpeg-turbo"/>
+		<package name="libksba"/>
+		<package name="liblcms1"/>
+		<package name="libldap-2_4-2"/>
+		<package name="libldapcpp1"/>
+		<package name="libltdl7"/>
+		<package name="libmng"/>
+		<package name="libmspack0"/>
+		<package name="libncurses5"/>
+		<package name="libnet"/>
+		<package name="libnscd"/>
+		<package name="libopenct1"/>
+		<package name="libpcap"/>
+		<package name="libpixman-1-0"/>
+		<package name="libpng12-0"/>
+		<package name="libreiserfs"/>
+		<package name="librpcsecgss"/>
+		<package name="libselinux1"/>
+		<package name="libsmbclient0"/>
+		<package name="libsmbios2"/>
+		<package name="libsoup-2_4-1"/>
+		<package name="libsqlite3-0"/>
+		<package name="libstdc++6"/>
+		<package name="libtasn1"/>
+		<package name="libtdb1"/>
+		<package name="libtirpc1"/>
+		<package name="libtool"/>
+		<package name="libwbclient0"/>
+		<package name="libx86"/>
+		<package name="libyui-ncurses-pkg6"/>
+		<package name="libzio"/>
+		<package name="libzypp"/>
+		<package name="logrotate"/>
+		<package name="lsof"/>
+		<package name="lsscsi"/>
+		<package name="lvm2"/>
+		<package name="m4"/>
+		<package name="mailx"/>
+		<package name="make"/>
+		<package name="makedumpfile"/>
+		<package name="man"/>
+		<package name="man-pages"/>
+		<package name="master-boot-code"/>
+		<package name="metamail"/>
+		<package name="mingetty"/>
+		<package name="mozilla-nss-certs"/>
+		<package name="mtools"/>
+		<package name="mutt"/>
+		<package name="ncurses-utils"/>
+		<package name="netcat-openbsd"/>
+		<package name="netcfg"/>
+		<package name="net-tools"/>
+		<package name="nfsidmap"/>
+		<package name="nscd"/>
+		<package name="ntp"/>
+		<package name="numactl" arch="x86_64"/>
+		<package name="openct"/>
+		<package name="openldap2-client"/>
+		<package name="opensc"/>
+		<package name="openslp"/>
+		<package name="openssh"/>
+		<package name="openssl"/>
+		<package name="opie"/>
+		<package name="orbit2"/>
+		<package name="pam"/>
+		<package name="pam-config"/>
+		<package name="pam-modules"/>
+		<package name="pam_mount"/>
+		<package name="parted"/>
+		<package name="patch"/>
+		<package name="pciutils"/>
+		<package name="pciutils-ids"/>
+		<package name="pcre"/>
+		<package name="perl"/>
+		<package name="perl-base"/>
+		<package name="perl-Bootloader"/>
+		<package name="pkg-config"/>
+		<package name="polkit-default-privs"/>
+		<package name="popt"/>
+		<package name="postfix"/>
+		<package name="pptp"/>
+		<package name="prctl"/>
+		<package name="procinfo"/>
+		<package name="procmail"/>
+		<package name="procps"/>
+		<package name="psmisc"/>
+		<package name="pth"/>
+		<package name="puppet"/>
+		<package name="python"/>
+		<package name="python-argparse"/>
+		<package name="python-boto"/>
+		<package name="python-cheetah"/>
+		<package name="python-configobj"/>
+		<package name="python-jsonpatch"/>
+		<package name="python-oauth"/>
+		<package name="python-PrettyTable"/>
+		<package name="python-PyYAML"/>
+		<package name="python-paramiko"/>
+		<package name="python-pyserial"/>
+		<package name="python-requests"/>
+		<package name="python-xml"/>
+		<package name="python-yaml"/>
+		<package name="quota"/>
+		<package name="readline-doc"/>
+		<package name="recode"/>
+		<package name="reiserfs"/>
+		<package name="release-notes-sles"/>
+		<package name="rpm"/>
+		<package name="rpm-python"/>
+		<package name="rsh"/>
+		<package name="rsync"/>
+		<package name="rsyslog"/>
+		<package name="ruby"/>
+		<package name="scout"/>
+		<package name="screen"/>
+		<package name="SDL"/>
+		<package name="SUSEConnect"/>
+		<package name="sed"/>
+		<package name="sg3_utils"/>
+		<package name="sharutils"/>
+		<package name="sles-manuals_en"/>
+		<package name="snmp-mibs"/>
+		<package name="sqlite3"/>
+		<package name="strace"/>
+		<package name="sudo"/>
+		<package name="supportutils"/>
+		<package name="suse-build-key"/>
+		<package name="SuSEfirewall2"/>
+		<package name="sysconfig"/>
+		<package name="sysfsutils"/>
+		<package name="systemd"/>
+		<package name="systemd-presets-branding-SLE"/>
+		<package name="tar"/>
+		<package name="tcpd"/>
+		<package name="tcpdump"/>
+		<package name="tcsh"/>
+		<package name="telnet"/>
+		<package name="terminfo"/>
+		<package name="terminfo-base"/>
+		<package name="timezone"/>
+		<package name="udev"/>
+		<package name="unzip"/>
+		<package name="update-alternatives"/>
+		<package name="usbutils"/>
+		<package name="utempter"/>
+		<package name="util-linux"/>
+		<package name="uuid"/>
+		<package name="vim"/>
+		<package name="vim-data"/>
+		<package name="vlan"/>
+		<package name="vlock"/>
+		<package name="w3m"/>
+		<package name="wget"/>
+		<package name="wicked-service"/>
+		<package name="x86info"/>
+		<package name="xdg-utils"/>
+		<package name="xfsprogs"/>
+		<package name="xinetd"/>
+		<package name="yast2"/>
+		<package name="yast2-add-on"/>
+		<package name="yast2-audit-laf"/>
+		<package name="yast2-bootloader"/>
+		<package name="yast2-branding-SLES"/>
+		<package name="yast2-ca-management"/>
+		<package name="yast2-core"/>
+		<package name="yast2-country"/>
+		<package name="yast2-country-data"/>
+		<package name="yast2-dbus-server"/>
+		<package name="yast2-dhcp-server"/>
+		<package name="yast2-dns-server"/>
+		<package name="yast2-firewall"/>
+		<package name="yast2-ftp-server"/>
+		<package name="yast2-hardware-detection"/>
+		<package name="yast2-http-server"/>
+		<package name="yast2-inetd"/>
+		<package name="yast2-iscsi-client"/>
+		<package name="yast2-iscsi-lio-server"/>
+		<package name="yast2-isns"/>
+		<package name="yast2-kdump"/>
+		<package name="yast2-ldap"/>
+		<package name="yast2-mail"/>
+		<package name="yast2-metapackage-handler"/>
+		<package name="yast2-network"/>
+		<package name="yast2-nfs-client"/>
+		<package name="yast2-nfs-common"/>
+		<package name="yast2-nfs-server"/>
+		<package name="yast2-nis-client"/>
+		<package name="yast2-nis-server"/>
+		<package name="yast2-ntp-client"/>
+		<package name="yast2-online-update"/>
+		<package name="yast2-online-update-frontend"/>
+		<package name="yast2-packager"/>
+		<package name="yast2-pam"/>
+		<package name="yast2-perl-bindings"/>
+		<package name="yast2-pkg-bindings"/>
+		<package name="yast2-printer"/>
+		<package name="yast2-registration"/>
+		<package name="yast2-samba-client"/>
+		<package name="yast2-samba-server"/>
+		<package name="yast2-schema"/>
+		<package name="yast2-security"/>
+		<package name="yast2-slp"/>
+		<package name="yast2-slp-server"/>
+		<package name="yast2-squid"/>
+		<package name="yast2-storage"/>
+		<package name="yast2-sudo"/>
+		<package name="yast2-support"/>
+		<package name="yast2-sysconfig"/>
+		<package name="yast2-tftp-server"/>
+		<package name="yast2-theme-SLE"/>
+		<package name="yast2-trans-en_US"/>
+		<package name="yast2-transfer"/>
+		<package name="yast2-trans-stats"/>
+		<package name="yast2-tune"/>
+		<package name="yast2-update"/>
+		<package name="yast2-users"/>
+		<package name="yast2-xml"/>
+		<package name="yast2-ycp-ui-bindings"/>
+		<package name="yp-tools"/>
+		<package name="zip"/>
+		<package name="zisofs-tools"/>
+		<package name="zsh"/>
+		<package name="zypper"/>
+	</packages>
+	<packages type="bootstrap">
+	    <package name="filesystem"/>
+	    <package name="glibc-locale"/>
+	    <package name="fipscheck"/>
+	    <package name="sles-release"/>
+	    <package name="sles-release-DVD"/>
+	</packages>
 </image>
