@@ -36,13 +36,13 @@
         </users>
     <!-- Release repos always in order newest first, oldest last -->
         <repository type="rpm-md">
-            <source path="http://download.suse.de/ibs/Devel:/Storage:/2.0/SLE12/"/>
+            <source path="http://172.18.0.103/install/SES2/suse/"/>
         </repository>
         <repository type="rpm-md">
-            <source path="http://download.suse.de/ibs/SUSE:/SLE-12:/Update/standard/"/>
+            <source path="http://172.18.0.103/install/smt/repo/SUSE/Updates/SLE-SERVER/12/x86_64/update/"/>
         </repository>
         <repository type="rpm-md">
-            <source path="http://download.suse.de/ibs/SUSE:/SLE-12:/GA/standard/"/>
+            <source path="http://172.18.0.103/install/smt/repo/SUSE/Products/SLE-SERVER/12/x86_64/product/"/>
         </repository>
 	<packages type="image">
 		<package name="aaa_base"/>
@@ -72,7 +72,6 @@
 		<package name="bzip2"/>
 		<package name="ca-certificates"/>
 		<package name="cifs-utils"/>
-		<package name="cloud-init"/>
 		<package name="command-not-found"/>
 		<package name="coreutils"/>
 		<package name="cpio"/>
@@ -105,7 +104,6 @@
 		<package name="ethtool"/>
 		<package name="expat"/>
 		<package name="expect"/>
-		<package name="facter"/>
 		<package name="fastjar"/>
 		<package name="file"/>
 		<package name="filesystem"/>
@@ -125,7 +123,6 @@
 		<package name="gpg2-lang"/>
 		<package name="grep"/>
 		<package name="groff"/>
-		<package name="growpart"/>
 		<package name="grub2"/>
 		<package name="gvfs"/>
 		<package name="gvfs-backends"/>
@@ -145,7 +142,6 @@
 		<package name="kernel-default"/>
 		<package name="kexec-tools"/>
 		<package name="keyutils"/>
-		<package name="klogd"/>
 		<package name="kpartx"/>
 		<package name="krb5"/>
 		<package name="ksh"/>
@@ -261,14 +257,10 @@
 		<package name="procps"/>
 		<package name="psmisc"/>
 		<package name="pth"/>
-		<package name="puppet"/>
 		<package name="python"/>
 		<package name="python-argparse"/>
 		<package name="python-boto"/>
-		<package name="python-cheetah"/>
 		<package name="python-configobj"/>
-		<package name="python-jsonpatch"/>
-		<package name="python-oauth"/>
 		<package name="python-PrettyTable"/>
 		<package name="python-PyYAML"/>
 		<package name="python-paramiko"/>
@@ -320,7 +312,6 @@
 		<package name="usbutils"/>
 		<package name="utempter"/>
 		<package name="util-linux"/>
-		<package name="uuid"/>
 		<package name="vim"/>
 		<package name="vim-data"/>
 		<package name="vlan"/>
@@ -376,7 +367,6 @@
 		<package name="yast2-schema"/>
 		<package name="yast2-security"/>
 		<package name="yast2-slp"/>
-		<package name="yast2-slp-server"/>
 		<package name="yast2-squid"/>
 		<package name="yast2-storage"/>
 		<package name="yast2-sudo"/>
@@ -387,7 +377,6 @@
 		<package name="yast2-trans-en_US"/>
 		<package name="yast2-transfer"/>
 		<package name="yast2-trans-stats"/>
-		<package name="yast2-tune"/>
 		<package name="yast2-update"/>
 		<package name="yast2-users"/>
 		<package name="yast2-xml"/>
@@ -400,9 +389,9 @@
 	</packages>
 	<packages type="bootstrap">
 	    <package name="filesystem"/>
+	    <package name="yast2-firstboot"/>
 	    <package name="glibc-locale"/>
 	    <package name="fipscheck"/>
 	    <package name="sles-release"/>
-	    <package name="sles-release-DVD"/>
 	</packages>
 </image>
