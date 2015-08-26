@@ -148,7 +148,7 @@
                 <module>
                     <label>Network</label>
                     <name>inst_proposal</name>
-                    <enabled config:type="boolean">false</enabled>
+                    <enabled config:type="boolean">true</enabled>
                     <proposal>firstboot_network</proposal>
                 </module>
                  <module>
@@ -163,7 +163,7 @@
                 </module>
                 <module>
                     <label>NTP Client</label>
-                    <enabled config:type="boolean">false</enabled>
+                    <enabled config:type="boolean">true</enabled>
                     <name>firstboot_ntp</name>
                 </module>
                 <module>
@@ -191,11 +191,6 @@
                     <label>Users</label>
                     <enabled config:type="boolean">true</enabled>
                     <name>inst_user</name>
-                </module>
-                <module>
-                    <label>Customer Center</label>
-                    <name>inst_suse_register</name>
-                    <enabled config:type="boolean">true</enabled>
                 </module>
                 <module>
                     <label>Hardware</label>
