@@ -259,7 +259,7 @@ DHCLIENT_SLEEP="0"
 # Note: RFC 2131 specifies, that the dhcp client should wait a random time
 # between one and ten seconds to desynchronize the use of DHCP at startup.
 #
-DHCLIENT_WAIT_AT_BOOT="15"
+DHCLIENT_WAIT_AT_BOOT="30"
 
 ## Type:        yesno
 ## Default:     yes
