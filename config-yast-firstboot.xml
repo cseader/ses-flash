@@ -60,18 +60,13 @@
                     <name>firstboot_welcome</name>
                 </module>
                 <module>
-                    <label>License Agreements</label>
-                    <enabled config:type="boolean">true</enabled>
-                    <name>firstboot_licenses</name>
-                </module>
-                <module>
                     <label>License Agreement</label>
                     <enabled config:type="boolean">false</enabled>
                     <name>firstboot_license_novell</name>
                 </module>
                 <module>
                     <label>License Agreement</label>
-                    <enabled config:type="boolean">false</enabled>
+                    <enabled config:type="boolean">true</enabled>
                     <name>firstboot_license</name>
                 </module>
                 <module>

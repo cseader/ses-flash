@@ -41,7 +41,7 @@ FIRSTBOOT_LICENSE_DIR="/etc/YaST2/licenses/beta/"
 # Directory from which 'license.txt' and 'license_<locale>.txt' are read
 # This is Novell specific license of the base product installed, it should
 # be already present on the system
-FIRSTBOOT_NOVELL_LICENSE_DIR="/etc/YaST2/licenses/base/"
+FIRSTBOOT_NOVELL_LICENSE_DIR=""
 
 ## Type:        string
 ## Default:     ""

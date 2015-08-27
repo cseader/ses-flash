@@ -18,9 +18,7 @@
               <oem-reboot>false</oem-reboot>
             </oemconfig>
 	</type>
-        <showlicense>/etc/YaST2/licenses/SLES-license.txt</showlicense>
-        <showlicense>/etc/YaST2/licenses/SUSE-Beta-EULA-020314.txt</showlicense>
-	<version>0.0.2</version>
+	<version>0.0.8</version>
 	<packagemanager>zypper</packagemanager>
 	<bootsplash-theme>SLE</bootsplash-theme>
         <bootloader-theme>SLE</bootloader-theme>
