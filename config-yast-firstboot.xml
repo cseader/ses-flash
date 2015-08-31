@@ -96,7 +96,7 @@
                     <enabled config:type="boolean">false</enabled>
                 </module>
 		<module>
-                    <enabled config:type="boolean">true</enabled>
+                    <enabled config:type="boolean">false</enabled>
                     <name>firstboot_ssh</name>
                 </module>
                 <module>
@@ -106,7 +106,7 @@
                 </module>
                 <module>
                     <label>NTP Client</label>
-                    <enabled config:type="boolean">true</enabled>
+                    <enabled config:type="boolean">false</enabled>
                     <name>firstboot_ntp</name>
                 </module>
                 <module>
@@ -132,12 +132,14 @@
         <congratulate>
           <label>
            &lt;p&gt;The deployment of SUSE Enterprise Storage 2 image has completed successfully.&lt;/p&gt;
-           &lt;p&gt;To finish setting up SUSE Enterprise Storage 2 you will need to use ceph-deploy.
-           Please reference the deployment guide from this point.&lt;/p&gt;
-           &lt;p&gt;execute ceph deploy&lt;/p&gt;
+           &lt;p&gt;To finish setting up SUSE Enterprise Storage 2 you will need to execute the following.&lt;/p&gt;
+           &lt;p&gt;execute yast2 ceph_setup&lt;/p&gt;
+           &lt;p&gt; &lt;/p&gt;
+           &lt;p&gt;Next you can execute the following.&lt;/p&gt;
+           &lt;p&gt;ceph deploy batch&lt;/p&gt;
            &lt;p&gt; &lt;/p&gt;
            &lt;p&gt;Click Finish.&lt;/p&gt;
-           &lt;p&gt;Please visit us at http://www.suse.com/&lt;/p&gt;
+           &lt;p&gt;Please visit us at http://www.suse.com/products/suse-enterprise-storage/&lt;/p&gt;
           </label>
         </congratulate>
     </texts>
