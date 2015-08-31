@@ -1,0 +1,32 @@
+# This script is called from /etc/init.d/boot.local. It is intended to run
+# only on first boot so it deletes itself after running.
+
+LICENSE_FILE=/etc/YaST2/licenses/license.txt
+
+# ============================================
+# Prompt for EULA acceptance if on SLE
+# --------------------------------------------
+if cat /etc/SuSE-release | grep "Enterprise" &>/dev/null && [ -f $LICENSE_FILE ]; then
+  stty -nl ixon ignbrk -brkint
+
+  if [ `uname -m` == "s390x" ]; then
+    cat $LICENSE_FILE
+  else
+    less $LICENSE_FILE 2>/dev/null || more $LICENSE_FILE 2>/dev/null || cat $LICENSE_FILE
+  fi
+
+  until [ "$answer" == "y" ] || [ "$answer" == "Y" ];
+  do
+    echo "Do you accept the EULA? [y/N] "
+    read -e answer
+    if [ "$answer" == "n" ] || [ "$answer" == "N" ];then
+      halt
+    fi
+  done
+fi
+
+# delete itself, as we only need this to run on first boot
+systemctl disable suse-studio-firstboot
+rm -f /etc/systemd/system/suse-studio-firstboot.service
+rm -f /etc/init.d/suse_studio_firstboot
+
