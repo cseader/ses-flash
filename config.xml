@@ -51,6 +51,7 @@
                 <package name="patterns-sles-Minimal"/>
                 <package name="patterns-sles-base"/>
                 <package name="patterns-sles-x11"/>
+                <package name="patterns-sle-gnome-basic"/>
 		<!-- SES2 Pattern  -->
                 <package name="patterns-ses-ceph_server"/>
                 <!-- Add autoyast2 package for autoyast profile during firstboot -->
