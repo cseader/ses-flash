@@ -3,6 +3,54 @@
 <profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
   <general>
     <ask-list config:type="list">
+       <ask>
+             <title>SES2 Setup</title>
+             <dialog config:type="integer">0</dialog>
+             <element config:type="integer">1</element>
+             <help>
+        <![CDATA[
+             <p>
+             Enter the server's (short) hostname, e.g. abcd.
+             </p>
+        ]]>
+             </help>
+             <pathlist config:type="list">
+               <path>networking,dns,hostname</path>
+             </pathlist>
+             <question>Enter Hostname</question>
+             <stage>initial</stage>
+             <default>changemeplease</default>
+          </ask>
+          <ask>
+             <title>SES2 Setup</title>
+             <dialog config:type="integer">0</dialog>
+             <element config:type="integer">3</element>
+             <help><![CDATA[
+              <p>Enter the server's new IP address for your network.</p>
+]]>
+              </help>
+             <pathlist config:type="list">
+               <path>networking,interfaces,0,ipaddr</path>
+             </pathlist>
+             <question>Enter IP-Addr</question>
+             <stage>initial</stage>
+             <default>0.0.0.0</default>
+          </ask>
+         <ask>
+             <title>SES2 Setup</title>
+             <dialog config:type="integer">1</dialog>
+             <element config:type="integer">3</element>
+             <help><![CDATA[
+             <p>Enter the default gateway for your network.</p>
+]]>
+             </help>
+             <pathlist config:type="list">
+               <path>networking,routing,routes,0,gateway</path>
+             </pathlist>
+             <question>Enter IP for default gateway</question>
+             <stage>initial</stage>
+             <default>1.2.3.4</default>
+        </ask>
     </ask-list>
     <mode>
       <confirm config:type="boolean">false</confirm>
