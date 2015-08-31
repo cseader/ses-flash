@@ -1,0 +1,9 @@
+Locale: en_US
+Sourcemounted: 1
+Display: Color
+Keytable: us
+X11i: 
+XServer: fbdev
+XVersion: 4
+XBusID: 1:0:0
+AutoYast:
