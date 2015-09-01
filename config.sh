@@ -53,4 +53,10 @@ baseCleanMount
 #-------------------------------------
 #su - ceph -c "echo | ssh-keygen"
 
+#=====================================
+# default systemd target
+#-------------------------------------
+
+systemctl set-default -f graphical.target
+
 exit 0
