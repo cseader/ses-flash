@@ -54,6 +54,8 @@
                 <package name="patterns-sle-gnome-basic"/>
 		<!-- SES2 Pattern  -->
                 <package name="patterns-ses-ceph_server"/>
+                <package name="ses-release"/>
+                <package name="ses-release-cd"/>
                 <!-- Add autoyast2 package for autoyast profile during firstboot -->
                 <package name="autoyast2"/>
                 <package name="autoyast2-installation"/>
