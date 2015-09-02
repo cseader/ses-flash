@@ -77,7 +77,7 @@
                 </module>
                 <module>
                     <label>Users</label>
-                    <enabled config:type="boolean">true</enabled>
+                    <enabled config:type="boolean">false</enabled>
                     <name>inst_user_first</name>
                 </module>
                 <module>
