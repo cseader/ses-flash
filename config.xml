@@ -35,8 +35,8 @@
             <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
         </users>
     <!-- Release repos always in order newest first, oldest last -->
-        <repository type="rpm-md">
-            <source path="http://172.18.0.103/install/SES2/suse/"/>
+        <repository type="yast2">
+            <source path="http://172.18.0.103/install/SES2/"/>
         </repository>
         <repository type="rpm-md">
             <source path="http://172.18.0.103/install/smt/repo/SUSE/Updates/SLE-SERVER/12/x86_64/update/"/>
