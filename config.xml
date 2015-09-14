@@ -11,7 +11,7 @@
 	    <oemconfig>
               <oem-swap>true</oem-swap>
               <oem-swapsize>2048</oem-swapsize>
-              <oem-systemsize>30000</oem-systemsize>
+              <oem-systemsize>8192</oem-systemsize>
               <oem-unattended>false</oem-unattended>
               <oem-skip-verify>true</oem-skip-verify>
               <oem-recovery>false</oem-recovery>
