@@ -65,6 +65,7 @@
                 <package name="gfxboot-branding-SLE" bootinclude="true"/>
                 <package name="yast2-firstboot"/>
 		<package name="at"/>
+		<package name="Mesa"/>
 		<package name="plymouth"/>
 		<package name="x11-tools"/>
 		<package name="xkeyboard-config"/>
