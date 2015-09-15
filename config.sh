@@ -59,4 +59,11 @@ baseCleanMount
 
 systemctl set-default -f graphical.target
 
+#=====================================
+# Add configuration options          
+#-------------------------------------
+
+sysconf_addword /etc/sysconfig/displaymanager DISPLAYMANAGER "gdm"
+sysconf_addword /etc/sysconfig/windowmanager DEFAULT_WM "gnome"
+
 exit 0

@@ -65,7 +65,8 @@
                 <package name="gfxboot-branding-SLE" bootinclude="true"/>
                 <package name="yast2-firstboot"/>
 		<package name="at"/>
-		<package name="Mesa"/>
+		<!-- Packages for Systemd Graphical Target
+                <package name="Mesa"/>
 		<package name="plymouth"/>
 		<package name="x11-tools"/>
 		<package name="xkeyboard-config"/>
@@ -76,9 +77,7 @@
         	<package name="xterm"/>
         	<package name="xorg-x11-server"/>
         	<package name="xorg-x11-server-extra"/>
-        	<package name="libX11-data"/>
-        	<package name="libX11-xcb1"/>
-        	<package name="libX11"/>
+                -->
 		<package name="atk"/>
 		<package name="atk-lang"/>
 		<package name="attr"/>
