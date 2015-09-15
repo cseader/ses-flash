@@ -46,6 +46,7 @@
         </repository>
 	<packages type="image">
 		<package name="aaa_base"/>
+		<package name="kernel-firmware"/>
 		<package name="aaa_base-extras"/>
 		<package name="acl"/>
                 <package name="patterns-sles-Minimal"/>
