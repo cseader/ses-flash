@@ -58,6 +58,7 @@ touch /var/lib/YaST2/reconfig_system
 # Add repos 
 #-------------------------------------
 zypper ar -c -t yast2 "iso:/?iso=/srv/iso/SUSE-Enterprise-Storage-2-DVD-x86_64-Build0034-Media1.iso"
+zypper ar -c -t yast2 "iso:/?iso=/srv/iso/SLE-12-Server-DVD-x86_64-GM-DVD1.iso"
 
 #=====================================
 # Ceph Admin Setup
