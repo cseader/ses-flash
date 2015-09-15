@@ -65,6 +65,17 @@
                 <package name="gfxboot-branding-SLE" bootinclude="true"/>
                 <package name="yast2-firstboot"/>
 		<package name="at"/>
+		<package name="plymouth"/>
+		<package name="x11-tools"/>
+		<package name="xkeyboard-config"/>
+                <package name="xorg-x11"/>
+        	<package name="xorg-x11-driver-input"/>
+        	<package name="xorg-x11-driver-video"/>
+        	<package name="xorg-x11-libX11-ccache"/>
+        	<package name="xorg-x11-xauth"/>
+        	<package name="xterm"/>
+        	<package name="xorg-x11-server"/>
+		<package name="ifplugd"/>
 		<package name="atk"/>
 		<package name="atk-lang"/>
 		<package name="attr"/>
