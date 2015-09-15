@@ -49,9 +49,16 @@ baseStripTranslations kiwi.mo
 baseCleanMount
 
 #=====================================
+# Enable yast2-firstboot
+#-------------------------------------
+mkdir -p /var/lib/YaST2
+touch /var/lib/YaST2/reconfig_system
+
+#=====================================
 # Ceph Admin Setup
 #-------------------------------------
-#su - ceph -c "echo | ssh-keygen"
+su - ceph
+ssh-keygen -P "" -f "/home/ceph/.ssh/id_rsa" -q
 
 #=====================================
 # default systemd target
