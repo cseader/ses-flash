@@ -26,7 +26,7 @@
 	<locale>en_US</locale>
 	<keytable>us.map.gz</keytable>
         <hwclock>utc</hwclock>
-        <timezone>utc</timezone>
+        <timezone>Europe/Berlin</timezone>
 	</preferences>
         <users group="users">
             <user name="ceph" password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/home/ceph"/>
@@ -42,7 +42,7 @@
             <source path="http://172.18.0.103/install/smt/repo/SUSE/Updates/SLE-SERVER/12/x86_64/update/"/>
         </repository>
         <repository type="yast2">
-            <source path="http://172.18.0.103/install/SLES12-Server-x86_64/"/>
+            <source path="http://172.18.0.103/install/sles12ga-x86_64/"/>
         </repository>
 	<packages type="image">
 		<package name="aaa_base"/>
