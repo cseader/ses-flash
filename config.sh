@@ -57,14 +57,16 @@ touch /var/lib/YaST2/reconfig_system
 #=====================================
 # Add repos 
 #-------------------------------------
-zypper ar -c -t yast2 "iso:/?iso=/srv/iso/SUSE-Enterprise-Storage-2-DVD-x86_64-Build0034-Media1.iso"
-zypper ar -c -t yast2 "iso:/?iso=/srv/iso/SLE-12-Server-DVD-x86_64-GM-DVD1.iso"
+mkdir -p /etc/products.d
+ln -s /etc/products.d/SLES.prod /etc/products.d/baseproduct
+zypper ar -c -t yast2 -f "iso:/?iso=/srv/iso/SUSE-Enterprise-Storage-2-DVD-x86_64-Build0034-Media1.iso" "SUSE Enterprise Storage 2"
+zypper ar -c -t yast2 -f "iso:/?iso=/srv/iso/SLE-12-Server-DVD-x86_64-GM-DVD1.iso" "SUSE Linux Enterprise Server 12"
+zypper -n refresh 
 
 #=====================================
 # Ceph Admin Setup
 #-------------------------------------
-su - ceph
-ssh-keygen -P "" -f "/home/ceph/.ssh/id_rsa" -q
+su ceph -c 'ssh-keygen -P "" -f "/home/ceph/.ssh/id_rsa" -q'
 
 #=====================================
 # default systemd target

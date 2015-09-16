@@ -343,6 +343,8 @@
 		<package name="xdg-utils"/>
 		<package name="xfsprogs"/>
 		<package name="xinetd"/>
+                <!-- Enable Qt mode for YaST firstboot with yast2-x11 -->
+                <package name="yast2-x11"/>
 		<package name="yast2"/>
 		<package name="yast2-add-on"/>
 		<package name="yast2-audit-laf"/>
