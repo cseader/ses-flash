@@ -77,8 +77,9 @@ systemctl set-default -f graphical.target
 #=====================================
 # Add configuration options          
 #-------------------------------------
-
-sysconf_addword /etc/sysconfig/displaymanager DISPLAYMANAGER "gdm"
-sysconf_addword /etc/sysconfig/windowmanager DEFAULT_WM "gnome"
+#sysconf_addword /etc/sysconfig/displaymanager DISPLAYMANAGER "gdm"
+#sysconf_addword /etc/sysconfig/windowmanager DEFAULT_WM "gnome"
+sed -i 's/DISPLAYMANAGER.*/DISPLAYMANAGER="gdm"/' /etc/sysconfig/displaymanager
+sed -i 's/DEFAULT_WM.*/DEFAULT_WM="gnome"/' /etc/sysconfig/windowmanager
 
 exit 0
