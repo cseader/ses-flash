@@ -21,14 +21,14 @@ Comes with the lastest version
 
 |Intsall the kiwi packages |
 |---------------------------|
-|kiwi-tools-7.03.14-1.1.x86_64|
-|kiwi-instsource-7.03.14-1.1.x86_64|
-|kiwi-7.03.14-1.1.x86_64|
-|kiwi-doc-7.03.14-1.1.noarch|
-|kiwi-templates-7.03.14-1.1.x86_64|
-|kiwi-requires-7.03.14-1.1.noarch|
-|kiwi-desc-oemboot-7.03.14-1.1.x86_64|
-|kiwi-config-openSUSE-13.2-8.8.1.x86_64|
+|kiwi-tools|
+|kiwi-instsource|
+|kiwi|
+|kiwi-doc|
+|kiwi-templates|
+|kiwi-requires|
+|kiwi-desc-oemboot|
+|kiwi-config-openSUSE|
 
 - Clone this git repo 
 ```
