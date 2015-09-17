@@ -1,1 +1,1 @@
-/usr/lib/systemd/system/graphical.target
+/usr/lib/systemd/system/multi-user.target
