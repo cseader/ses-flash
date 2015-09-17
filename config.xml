@@ -32,17 +32,17 @@
             <user name="ceph" password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/home/ceph"/>
         </users>
         <users group="root">
-            <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
+            <user password="" home="/root" name="root"/>
         </users>
     <!-- Release repos always in order newest first, oldest last -->
         <repository type="yast2">
-            <source path="http://172.18.0.103/install/SES2/"/>
+            <source path="/home/cseader/Downloads/SES2/"/>
         </repository>
         <repository type="rpm-md">
             <source path="http://172.18.0.103/install/smt/repo/SUSE/Updates/SLE-SERVER/12/x86_64/update/"/>
         </repository>
         <repository type="yast2">
-            <source path="http://172.18.0.103/install/sles12ga-x86_64/"/>
+            <source path="/home/cseader/Downloads/SLES12GA-x86_64/"/>
         </repository>
 	<packages type="image">
 		<package name="aaa_base"/>
