@@ -51,6 +51,7 @@
 		<package name="acl"/>
                 <package name="patterns-sles-Minimal"/>
                 <package name="patterns-sles-base"/>
+                <package name="patterns-sles-x11"/>
                 <!-- X patterns
                 <package name="patterns-sles-x11"/>
                 <package name="patterns-sle-gnome-basic"/>
