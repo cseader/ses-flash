@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# delete itself, as we only need this to run on first boot
+systemctl disable suse-studio-firstboot
+rm -f /etc/systemd/system/suse-studio-firstboot.service
+rm -f /etc/init.d/suse_studio_firstboot

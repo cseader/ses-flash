@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -f /etc/init.d/ses-pre-script ]; then
+    echo ""
+    printf "%*s" $COLUMNS |tr " " "="
+    echo "  ____"
+    echo "/@    ~-."
+    echo "\/ __ .- |   SUSE OpenStack Cloud 4 Admin"
+    echo " // //  @"
+    echo ""
+    echo "    Running prepare step"
+    echo "    This will take a few minutes..."
+    printf "%*s" $COLUMNS |tr " " "="
+    echo ""
+fi
