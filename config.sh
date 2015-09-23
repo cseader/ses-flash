@@ -30,6 +30,7 @@ echo "Configure image: [$kiwi_iname]..."
 # Setup baseproduct link
 #--------------------------------------
 suseSetupProduct
+suseSetupProductInformation
 
 #======================================
 # Add missing gpg keys to rpm
