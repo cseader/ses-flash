@@ -28,6 +28,9 @@ Comes with the lastest version
 |kiwi-requires|
 |kiwi-desc-oemboot|
 |kiwi-config-openSUSE|
+```
+zypper in kiwi-tools kiwi-instsource kiwi kiwi-doc kiwi-templates kiwi-requires kiwi-desc-oemboot kiwi-config-openSUSE
+```
 
 - Clone this git repo 
 ```
@@ -65,8 +68,8 @@ kiwi -b /point/to/the/location/of/git/repo/ -d /location/of/build/destination/ -
 ```
 
 #####Kiwi Docs
-Latest KIWI Cookbook
+Latest KIWI Cookbook  
 https://doc.opensuse.org/projects/kiwi/doc/
 
-KIWI openSUSE wiki
+KIWI openSUSE wiki  
 https://en.opensuse.org/Category:KIWI
