@@ -27,45 +27,130 @@ test -f /.profile && . /.profile
 echo "Configure image: [$kiwi_iname]..."
 
 #======================================
-# SuSEconfig
-#--------------------------------------
-echo "** Running suseConfig..."
-suseConfig
-
-echo "** Running ldconfig..."
-/sbin/ldconfig
-
-#======================================
 # Setup baseproduct link
 #--------------------------------------
 suseSetupProduct
-
-#======================================
-# Setup default runlevel
-#--------------------------------------
-baseSetRunlevel 5 
 
 #======================================
 # Add missing gpg keys to rpm
 #--------------------------------------
 suseImportBuildKey
 
-#==========================================
-# setup gfxboot
-#------------------------------------------
-suseGFXBoot openSUSE grub
+#=========================================
+# Set sysconfig options
+#-----------------------------------------
+
+# These are all set by YaST but not by KIWI
+baseUpdateSysConfig /etc/sysconfig/boot RUN_PARALLEL no
+baseUpdateSysConfig /etc/sysconfig/bootloader LOADER_TYPE grub2 
+baseUpdateSysConfig /etc/sysconfig/clock HWCLOCK "-u"
+baseUpdateSysConfig /etc/sysconfig/clock TIMEZONE UTC
+baseUpdateSysConfig /etc/sysconfig/console CONSOLE_FONT "lat9w-16.psfu"
+baseUpdateSysConfig /etc/sysconfig/console CONSOLE_SCREENMAP trivial
+baseUpdateSysConfig /etc/sysconfig/kernel INITRD_MODULES "ext4"
+baseUpdateSysConfig /etc/sysconfig/keyboard COMPOSETABLE "clear latin1.add"
+baseUpdateSysConfig /etc/sysconfig/language INSTALLED_LANGUAGES ""
+baseUpdateSysConfig /etc/sysconfig/mouse MOUSEDEVICE ""
+baseUpdateSysConfig /etc/sysconfig/network/dhcp DHCLIENT_SET_HOSTNAME yes
+baseUpdateSysConfig /etc/sysconfig/network/dhcp WRITE_HOSTNAME_TO_HOSTS no
+baseUpdateSysConfig /etc/sysconfig/suseconfig CWD_IN_USER_PATH no
+baseUpdateSysConfig /etc/sysconfig/suse_register SUBMIT_OPTIONAL true
+baseUpdateSysConfig /etc/sysconfig/suse_register SUBMIT_HWDATA true
+baseUpdateSysConfig /etc/sysconfig/windowmanager X_MOUSE_CURSOR ""
+baseUpdateSysConfig /etc/sysconfig/windowmanager DEFAULT_WM ""
+
+# New entries in sysconfig
+echo 'DEFAULT_TIMEZONE="UTC"' >> /etc/sysconfig/clock
+
+echo '
+# Encoding used for output of non-ascii characters.
+#
+CONSOLE_ENCODING="UTF-8"' >> /etc/sysconfig/console
+
+echo '
+# The YaST-internal identifier of the attached keyboard.
+#
+YAST_KEYBOARD="english-us,pc104"' >> /etc/sysconfig/keyboard
+
+echo '
+# The full name of the attached mouse.
+#
+FULLNAME=""
+
+# The YaST-internal identifier of the attached mouse.
+#
+YAST_MOUSE="none"
+
+# Mouse device used for the X11 system.
+#
+XMOUSEDEVICE=""
+
+# The number of buttons of the attached mouse.
+#
+BUTTONS="0"
+
+# The number of wheels of the attached mouse.
+#
+WHEELS="0"' >> /etc/sysconfig/mouse
+
+echo 'DISPLAYMANAGER_SHUTDOWN="root"
+DISPLAYMANAGER=""
+DISPLAYMANAGER_REMOTE_ACCESS="no"
+DISPLAYMANAGER_ROOT_LOGIN_REMOTE="no"' > /etc/sysconfig/displaymanager
+
+rm /etc/sysconfig/mcelog
+
+#========================================
+# Files that may vary from build to build
+#----------------------------------------
+
+# Keep track of files with randomly created unique IDs or random numbers
+function random_file() { true ; }
+random_file /etc/cron.d/novell.com-suse_register
+random_file /etc/ntp.keys
+random_file /zypp/credentials.d/NCCcredentials
+random_file /var/lib/dbus/machine-id
+random_file /var/lib/zypp/AnonymousUniqueId
+
+# Keep track of files with embedded timestamps
+function timestamp_file() { true ; }
+timestamp_file /etc/gconf/gconf.xml.schemas/%gconf-tree.xml
+timestamp_file /var/lib/PolicyKit/user-haldaemon.auths
+
+# These caches are based only on data on the filesystem (system independent)
+function cache_file() { true ; }
+cache_file filesonly /etc/gtk-2.0/gdk-pixbuf64.loaders
+cache_file filesonly /etc/gtk-2.0/gdk-pixbuf.loaders
+cache_file filesonly /etc/gtk-2.0/gtk64.immodules
+cache_file filesonly /etc/gtk-2.0/gtk.immodules
+cache_file filesonly /etc/init.d/.depend.boot
+cache_file filesonly /etc/init.d/.depend.halt
+cache_file filesonly /etc/init.d/.depend.start
+cache_file filesonly /etc/init.d/.depend.stop
+cache_file filesonly /etc/rc.d/.depend.boot
+cache_file filesonly /etc/rc.d/.depend.halt
+cache_file filesonly /etc/rc.d/.depend.start
+cache_file filesonly /etc/rc.d/.depend.stop
+cache_file filesonly /etc/pango/pango64.modules
+cache_file filesonly /etc/pango/pango.modules
+cache_file filesonly /usr/share/info/dir
+cache_file filesonly /var/adm/SuSEconfig/md5/etc/postfix/main.cf
 
 #======================================
-# Keep UTF-8 locale
+# Activate services
 #--------------------------------------
-baseStripLocales \
-    $(for i in $(echo $kiwi_language | tr "," " ");do echo -n "$i.utf8 ";done)
-baseStripTranslations kiwi.mo
+suseInsertService boot.device-mapper
+suseInsertService sshd
+suseRemoveService acpid 
+suseRemoveService boot.efivars
+suseRemoveService boot.lvm
+suseRemoveService boot.md
+suseRemoveService boot.multipath
+suseRemoveService display-manager
+suseRemoveService kbd
 
-#======================================
-# Umount kernel filesystems
-#--------------------------------------
-baseCleanMount
+# Cleanup
+rm /var/lib/rpm/__db.*
 
 #=====================================
 # Enable yast2-firstboot
@@ -73,8 +158,10 @@ baseCleanMount
 mkdir -p /var/lib/YaST2
 touch /var/lib/YaST2/reconfig_system
 
-# Enable sshd
-chkconfig sshd on
+#=====================================
+# Ceph Admin Setup
+#-------------------------------------
+su ceph -c 'ssh-keygen -P "" -f "/home/ceph/.ssh/id_rsa" -q'
 
 #=====================================
 # Add repos 
@@ -86,36 +173,15 @@ zypper ar -c -t yast2 -f \"iso:/?iso=/srv/iso/SUSE-Enterprise-Storage-2-DVD-x86_
 zypper ar -c -t yast2 -f \"iso:/?iso=/srv/iso/SLE-12-Server-DVD-x86_64-GM-DVD1.iso\" SUSE-Linux-Enterprise-Server-12
 zypper -n refresh 
 
-#=====================================
-# Ceph Admin Setup
-#-------------------------------------
-su ceph -c 'ssh-keygen -P "" -f "/home/ceph/.ssh/id_rsa" -q'
-
-#=====================================
-# default systemd target
-#-------------------------------------
-
-systemctl set-default -f graphical.target
-
-#======================================
-# Sysconfig Update
-#--------------------------------------
-echo '** Update sysconfig entries...'
-baseUpdateSysConfig /etc/sysconfig/keyboard KEYTABLE us.map.gz 
-baseUpdateSysConfig /etc/sysconfig/network/config FIREWALL no
-baseUpdateSysConfig /etc/sysconfig/network/config NETWORKMANAGER no
-baseUpdateSysConfig /etc/sysconfig/console CONSOLE_FONT lat9w-16.psfu
-baseUpdateSysConfig /etc/sysconfig/displaymanager DISPLAYMANAGER xdm
-baseUpdateSysConfig /etc/sysconfig/windowmanager DEFAULT_WM icewm-session
-#sysconf_addword /etc/sysconfig/displaymanager DISPLAYMANAGER "gdm"
-#sysconf_addword /etc/sysconfig/windowmanager DEFAULT_WM "gnome"
-#sed -i 's/DISPLAYMANAGER.*/DISPLAYMANAGER="gdm"/' /etc/sysconfig/displaymanager
-#sed -i 's/DEFAULT_WM.*/DEFAULT_WM="gnome"/' /etc/sysconfig/windowmanager
-
 #======================================
 # SSL Certificates Configuration
 #--------------------------------------
 echo '** Rehashing SSL Certificates...'
 c_rehash
+
+#======================================
+# Umount kernel filesystems
+#--------------------------------------
+baseCleanMount
 
 exit 0

@@ -73,7 +73,7 @@
                 <module>
                     <label>Root Password</label>
                     <enabled config:type="boolean">true</enabled>
-                    <name>inst_root_first</name>
+                    <name>inst_root</name>
                 </module>
                 <module>
                     <label>Users</label>
