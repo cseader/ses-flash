@@ -159,21 +159,6 @@ rm /var/lib/rpm/__db.*
 mkdir -p /var/lib/YaST2
 touch /var/lib/YaST2/reconfig_system
 
-#=====================================
-# Ceph Admin Setup
-#-------------------------------------
-su ceph -c 'ssh-keygen -P "" -f "/home/ceph/.ssh/id_rsa" -q'
-
-#=====================================
-# Add repos 
-#-------------------------------------
-#mkdir -p /etc/products.d
-# fixed with above suseSetupProduct
-#ln -s /etc/products.d/SLES.prod /etc/products.d/baseproduct
-zypper ar -c -t yast2 -f \"iso:/?iso=/srv/iso/SUSE-Enterprise-Storage-2-DVD-x86_64-Build0034-Media1.iso\" SUSE-Enterprise-Storage-2
-zypper ar -c -t yast2 -f \"iso:/?iso=/srv/iso/SLE-12-Server-DVD-x86_64-GM-DVD1.iso\" SUSE-Linux-Enterprise-Server-12
-zypper -n refresh 
-
 #======================================
 # SSL Certificates Configuration
 #--------------------------------------
