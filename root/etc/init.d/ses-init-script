@@ -47,6 +47,9 @@ zypper ar -c -t yast2 -f "iso:/?iso=/srv/iso/SLE-12-Server-DVD-x86_64-GM-DVD1.is
 zypper -n refresh 
 
 # delete itself, as we only need this to run on first boot
-systemctl disable suse-studio-firstboot
-rm -f /etc/systemd/system/suse-studio-firstboot.service
-rm -f /etc/init.d/suse_studio_firstboot
+systemctl disable ses-init-splash
+systemctl disable ses-init-script
+rm -f /etc/systemd/system/ses-init-splash.service 
+rm -f /etc/systemd/system/ses-init-script.service
+rm -f /etc/init.d/ses-init-script
+rm -f /etc/init.d/ses-init-splash
