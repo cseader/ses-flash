@@ -18,7 +18,6 @@ http://download.opensuse.org/repositories/Virtualization:/Appliances/openSUSE_Le
 Tumbleweed  
 Comes with the lastest version
 
-
 |Intsall the kiwi packages |
 |---------------------------|
 |kiwi-tools|
@@ -65,3 +64,9 @@ Note: Just point it to where you have extracted the root of the DVD.
 kiwi -b /point/to/the/location/of/git/repo/ -d /location/of/build/destination/ --type oem
 ```
 
+#####Kiwi Docs
+Latest KIWI Cookbook
+https://doc.opensuse.org/projects/kiwi/doc/
+
+KIWI openSUSE wiki
+https://en.opensuse.org/Category:KIWI
