@@ -39,12 +39,12 @@ git clone https://github.com/cseader/ses-flash.git
 
 - Edit config.xml to change souce paths to local repos of the same source
 
-This repo is a download of the latest SES2 beta extracted on an installation server. 
+This repo is a download of the latest SES2 beta extracted on an installation server.   
+
 Note: Just point it to where you have extracted the root of the DVD. 
 If you don't know how to setup an installation server then you can reference the documentation here.  
 https://www.suse.com/documentation/sles11/book_sle_deployment/data/sec_deployment_remoteinst_instserver.html  
 There are many guides on the internet around this topic. Do some googling. :-)  
-
 ```
 <repository type="yast2">
     <source path="http://some_host/install/SES2/"/>
