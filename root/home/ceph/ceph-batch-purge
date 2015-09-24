@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Global variabls
+
+nodes="node1 node2 node3"
+
+# Purge everything on all nodes
+ceph-deploy purge $nodes
+ceph-deploy purgedata $nodes
+ceph-deploy forgetkeys

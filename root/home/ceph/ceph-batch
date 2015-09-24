@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# ceph-batch
+# 
+# author cs@suse.com
+#
+####################
+
+# Global variables
+nodes="node1 node2 node3"
+anodes=($nodes)
+osd=(vdb vdc)
+
+# ceph-deploy install
+ceph-deploy install $nodes
+
+# ceph-deploy new
+ceph-deploy new $nodes
+
+# ceph-deploy mon create-initial
+ceph-deploy mon create-initial
+
+# clean disks
+for i in "${osd[@]}"; do
+  for n in "${anodes[@]}"; do
+    ceph-deploy disk zap "$n":"$i"
+  done
+done
+
+# prepare disks
+for i in "${osd[@]}"; do
+  for n in "${anodes[@]}"; do
+    ceph-deploy --overwrite-conf osd prepare "$n":"$i"
+  done
+done 
+
+# activate disks
+for i in "${osd[@]}"; do
+  for n in "${anodes[@]}"; do
+    ceph-deploy osd activate "$n":"$i"1
+  done
+done 
+
