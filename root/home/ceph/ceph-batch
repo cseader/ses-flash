@@ -4,8 +4,14 @@
 # 
 # author cs@suse.com
 #
-####################
+#####################
 
+# TODO:
+# Need to setup nodes list in xml or yaml format to be read by this script
+# Need to have the list used to setup /etc/hosts on all nodes
+#
+
+#
 # Global variables
 nodes="node1 node2 node3"
 
@@ -21,8 +27,6 @@ discover_osds () {
  echo $osds
 }
 
-echo discover_osd
-
 # ceph-deploy install
 ceph-deploy install $nodes
 
@@ -32,6 +36,12 @@ ceph-deploy new $nodes
 # ceph-deploy mon create-initial
 # Create the initial monitor service on already created monitor nodes
 ceph-deploy mon create-initial
+
+# prompt user to continue
+#echo "The system has discovered these osds: "`discover_osds`""
+#echo "If these are correct and you would like to proceed then type 'yes':"
+
+#read -s yes
 
 # clean disks
 for i in "${aosds[@]}"; do
