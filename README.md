@@ -68,9 +68,8 @@ Note: Just point it to where you have extracted the root of the DVD.
 
 - Build yourself an image
 
-Before building the iamge you will need to create for yourself another directory for your kiwi build directory.  
-You will want to create a directory that is different from your git repository where you will rsync the contents of your git repository into. For example in this case I will create a directory called /kiwi/ses2-flash/. I like to give it a name that I can identifiy like I have here with ses2-flash since I will be building version 2 of SES.
-
+Before building the image you will need to create for yourself another directory for your kiwi build directory.  
+You will want to create a directory that is different from your git repository where you will rsync the contents of your git repository into. For example in this case I will create a directory called /home/some_user/kiwi/ses2-flash/. I like to give it a name that I can identifiy like I have here with ses2-flash since I will be building version 2 of SES. Another reason why we create this directory is because we are adding some large ISO's into an overlay directory that we don't want getting picked up by our git repository. I just like keeping it all separated. You don't have to do it this way. You could infact just keep your git repo and then just add the below files to the overlay directory indicated below.  
 ```
 mkdir -p /home/some_user/kiwi/ses2-flash/
 ```
@@ -82,6 +81,17 @@ rsync -avP /home/directory/git/ses-flash/ /home/some_user/kiwi/ses2-flash/
 Once you have your git repository synced then you can now add some required overlay files into your overlay directory.  
 You will need to download both the SLES 12 Server GA x86_64 DVD iso image and the SUSE Enterprise Storage 2 iso image and put them into the directory /home/some_user/kiwi/root/srv/iso/  
 Once they are in that directory then they will be picked up as overlay files when you run the kiwi build.  
+
+Here is what the contents of that directory might look like afterwards.  
+Note: The SUSE Enterprise storage 2 DVD is not released, but reflects what it would look like if it were. For Beta testers you would drop in the Beta iso image here.  
+```
+flisk:/home/cseader/kiwi/ses2-flash # l root/srv/iso/
+total 3025116
+drwxr-xr-x 2 cseader users        113 Aug 20 16:03 ./
+drwxr-xr-x 3 cseader users         16 Aug 20 16:03 ../
+-rw-r----- 1 root    root  2937061376 Sep 15 17:38 SLE-12-Server-DVD-x86_64-GM-DVD1.iso
+-rw-r----- 1 root    root   160655360 Sep 15 17:29 SUSE-Enterprise-Storage-2-DVD-x86_64-GM-DVD1.iso
+```
 
 You are now ready to run the kiwi build with the below command.  
 ```
