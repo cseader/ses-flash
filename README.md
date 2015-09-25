@@ -32,8 +32,10 @@ Comes with the lastest version
 zypper in kiwi-tools kiwi-instsource kiwi kiwi-doc kiwi-templates kiwi-requires kiwi-desc-oemboot kiwi-config-openSUSE
 ```
 
-- Clone this git repo 
+- Clone this git repo  
+Before cloning the repository you are going to want to create a directory to clone it into. For the scope of this guide we will use /home/some_user/git/ as the git directory that contains all of our project repos. Before running the git clone we need to change our directory to the git directory as the command indicate below.  
 ```
+cd /home/some_user/git/
 git clone https://github.com/cseader/ses-flash.git
 ```
 
