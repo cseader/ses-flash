@@ -67,8 +67,25 @@ Note: Just point it to where you have extracted the root of the DVD.
 ```
 
 - Build yourself an image
+
+Before building the iamge you will need to create for yourself another directory for your kiwi build directory.  
+You will want to create a directory that is different from your git repository where you will rsync the contents of your git repository into. For example in this case I will create a directory called /kiwi/ses2-flash/. I like to give it a name that I can identifiy like I have here with ses2-flash since I will be building version 2 of SES.
+
 ```
-kiwi -b /point/to/the/location/of/git/repo/ -d /location/of/build/destination/ --type oem
+mkdir -p /home/some_user/kiwi/ses2-flash/
+```
+Now rsync the contents of your git repo into /home/some_user/kiwi/ses2-flash/  
+Note: The git repo is ses-flash because thats what git will create from a clone since its the name of the project.  
+```
+rsync -avP /home/directory/git/ses-flash/ /home/some_user/kiwi/ses2-flash/
+```
+Once you have your git repository synced then you can now add some required overlay files into your overlay directory.  
+You will need to download both the SLES 12 Server GA x86_64 DVD iso image and the SUSE Enterprise Storage 2 iso image and put them into the directory /home/some_user/kiwi/root/srv/iso/  
+Once they are in that directory then they will be picked up as overlay files when you run the kiwi build.  
+
+You are now ready to run the kiwi build with the below command.  
+```
+kiwi -b /home/some_user/kiwi/ses2-flash/ -d /location/of/build/destination/ --type oem
 ```
 
 #####Kiwi Docs
