@@ -85,6 +85,8 @@ Once you have your git repository synced then you can now add some required over
 You will need to download both the SLES 12 Server GA x86_64 DVD iso image and the SUSE Enterprise Storage 2 iso image and put them into the directory /home/some_user/kiwi/root/srv/iso/  
 Once they are in that directory then they will be picked up as overlay files when you run the kiwi build.  
 
+You can also choose not to embed the iso image into your image. If you choose not to then you must register each system with either a SUSE Manager Server, Subscription Management Tool Server (SMT), or SUSE Customer Center (SCC).  
+
 Here is what the contents of that directory might look like afterwards.  
 Note: The SUSE Enterprise storage 2 DVD is not released, but reflects what it would look like if it were. For Beta testers you would drop in the Beta iso image here.  
 ```
