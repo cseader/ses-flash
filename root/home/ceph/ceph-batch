@@ -8,8 +8,16 @@
 
 # Global variables
 nodes="node1 node2 node3"
+
+# Arrays
 anodes=($nodes)
 osd=(vdb vdc)
+
+# Function discovering OSD's (availabled disks not /)
+#discover_osd ()
+# rootdisk=`mount | grep "on \/ " | awk {'print $1'} | sed 's/.....//;s/.$//g'`
+# alldisks=`parted -l | grep "Disk \/" | awk {'print $2'} | sed 's/.....//;s/.$//g' | xargs`
+# osd=$(echo "$alldisks" | sed 's/'$rootdisk'//g')
 
 # ceph-deploy install
 ceph-deploy install $nodes
@@ -20,11 +28,6 @@ ceph-deploy new $nodes
 # ceph-deploy mon create-initial
 # Create the initial monitor service on already created monitor nodes
 ceph-deploy mon create-initial
-
-# Function discovering OSD's (availabled disks not /)
-#discover_osd ()
-# rootdisk=`mount | grep "on \/ " | awk {'print $1'}`
-# alldisks=`parted -l | grep "Disk \/" | awk {'print $2'}`
 
 # clean disks
 for i in "${osd[@]}"; do
