@@ -11,13 +11,17 @@ nodes="node1 node2 node3"
 
 # Arrays
 anodes=($nodes)
-osd=(vdb vdc)
+aosds=("`discover_osds`")
 
-# Function discovering OSD's (availabled disks not /)
-#discover_osd ()
-# rootdisk=`mount | grep "on \/ " | awk {'print $1'} | sed 's/.....//;s/.$//g'`
-# alldisks=`parted -l | grep "Disk \/" | awk {'print $2'} | sed 's/.....//;s/.$//g' | xargs`
-# osd=$(echo "$alldisks" | sed 's/'$rootdisk'//g')
+# Function discovering OSD's (available disks that are not /)
+discover_osds () {
+ rootdisk=`mount | grep "on \/ " | awk {'print $1'} | sed 's/.....//;s/.$//g'`
+ alldisks=`parted -l | grep "Disk \/" | awk {'print $2'} | sed 's/.....//;s/.$//g' | xargs`
+ osds=$(echo "$alldisks" | sed 's/'$rootdisk'//g')
+ echo $osds
+}
+
+echo discover_osd
 
 # ceph-deploy install
 ceph-deploy install $nodes
@@ -30,21 +34,21 @@ ceph-deploy new $nodes
 ceph-deploy mon create-initial
 
 # clean disks
-for i in "${osd[@]}"; do
+for i in "${aosds[@]}"; do
   for n in "${anodes[@]}"; do
     ceph-deploy disk zap "$n":"$i"
   done
 done
 
 # prepare disks
-for i in "${osd[@]}"; do
+for i in "${aosds[@]}"; do
   for n in "${anodes[@]}"; do
     ceph-deploy --overwrite-conf osd prepare "$n":"$i"
   done
 done 
 
 # activate disks
-for i in "${osd[@]}"; do
+for i in "${aosds[@]}"; do
   for n in "${anodes[@]}"; do
     ceph-deploy osd activate "$n":"$i"1
   done
