@@ -15,17 +15,30 @@
 # Global variables
 nodes="node1 node2 node3"
 
-# Arrays
-anodes=($nodes)
-aosds=("`discover_osds`")
-
 # Function discovering OSD's (available disks that are not /)
+# Nodes Array
+anodes=($nodes)
+
 discover_osds () {
- rootdisk=`mount | grep "on \/ " | awk {'print $1'} | sed 's/.....//;s/.$//g'`
- alldisks=`parted -l | grep "Disk \/" | awk {'print $2'} | sed 's/.....//;s/.$//g' | xargs`
- osds=$(echo "$alldisks" | sed 's/'$rootdisk'//g')
- echo $osds
+for i in "${anodes[@]}"; do
+  #determine what roots disk is on remote node in cluster
+  rootdisk=$(ssh -q $i mount | grep "on \/ " | awk {'print $1'} | sed 's/.....//;s/.$//g')
+  #determine all disks available to remote node in cluster
+  alldisks=$(ssh -q $i sudo parted -l | grep "Disk \/" | awk {'print $2'} | sed 's/.....//;s/.$//g' | xargs)
+  #expand all disks and strip roots disk and white space
+  osds=$(echo "$alldisks" | sed 's/'$rootdisk'//g;s/^[ \t]*//')
+    #Put the disk and node together in usable ceph-deploy format; result is $nosds
+    for d in $osds; do
+      #echo $rootdisk
+      #echo $alldisks
+      nosds=$(echo $i:$d)
+      echo $nosds
+    done
+done
 }
+
+# Nodes and discovered OSD's Array format: node1:sdb
+aosds=(`discover_osds | xargs`)
 
 # ceph-deploy install
 ceph-deploy install $nodes
@@ -45,22 +58,17 @@ ceph-deploy mon create-initial
 
 # clean disks
 for i in "${aosds[@]}"; do
-  for n in "${anodes[@]}"; do
-    ceph-deploy disk zap "$n":"$i"
-  done
+    ceph-deploy disk zap $i
 done
 
-# prepare disks
+# ceph-deploy prepare disks
 for i in "${aosds[@]}"; do
-  for n in "${anodes[@]}"; do
-    ceph-deploy --overwrite-conf osd prepare "$n":"$i"
-  done
+    ceph-deploy --overwrite-conf osd prepare $i
 done 
 
-# activate disks
+# ceph-deploy activate disks
 for i in "${aosds[@]}"; do
-  for n in "${anodes[@]}"; do
-    ceph-deploy osd activate "$n":"$i"1
-  done
-done 
-
+   #strip trailing white space from $i
+   osd=$(echo "$i" | sed 's/\s*$//g')
+   ceph-deploy osd activate "$osd"1
+done
